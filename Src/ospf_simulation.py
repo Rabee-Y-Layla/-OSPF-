@@ -13,7 +13,7 @@ MESSAGE_TYPES = ["HELLO", "GET_NEIGHBORS", "SET_NEIGHBORS", "SET_TOPOLOGY", "DAT
 # --- Data Structures ---
 
 class Message:
-    def __init__(self, sender_id, receiver_id, msg_type, data=None):  # تصحيح: __init__
+    def __init__(self, sender_id, receiver_id, msg_type, data=None):  
         self.sender_id = sender_id
         self.receiver_id = receiver_id
         self.msg_type = msg_type
@@ -21,13 +21,13 @@ class Message:
         self.timestamp = time.time()
 
 class Link:
-    def __init__(self, neighbor_id, cost, loss_prob):  # تصحيح: __init__
+    def __init__(self, neighbor_id, cost, loss_prob): 
         self.neighbor_id = neighbor_id
         self.cost = cost
         self.loss_prob = loss_prob
 
 class Connection:
-    def __init__(self, loss_prob=0.0):  # تصحيح: __init__
+    def __init__(self, loss_prob=0.0):  
         self.queue = Queue()
         self.loss_prob = loss_prob
         self.sent_count = 0
@@ -48,8 +48,8 @@ class Connection:
 # --- Router Base Class ---
 
 class Router(threading.Thread):
-    def __init__(self, router_id, links, dr_connection, all_connections):  # تصحيح: __init__
-        super().__init__()  # تصحيح: __init__
+    def __init__(self, router_id, links, dr_connection, all_connections): 
+        super().__init__()  
         self.router_id = router_id
         self.links = links  # {neighbor_id: Link}
         self.dr_connection = dr_connection
@@ -199,8 +199,8 @@ class Router(threading.Thread):
 # --- Designated Router Class ---
 
 class DesignatedRouter(threading.Thread):
-    def __init__(self, router_ids, topology_data, router_connections):  # تصحيح: __init__
-        super().__init__()  # تصحيح: __init__
+    def __init__(self, router_ids, topology_data, router_connections): 
+        super().__init__()  
         self.router_ids = router_ids
         self.router_connections = router_connections
         self.topology_data = topology_data
@@ -345,6 +345,6 @@ def simulate_all_topologies():
 
     return all_logs
 
-if __name__ == "__main__":  # تصحيح: __main__
+if __name__ == "__main__":  
     random.seed(42)
     logs = simulate_all_topologies()
